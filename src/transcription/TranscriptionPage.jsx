@@ -6,7 +6,7 @@ function Waveform() {
   return <div className="transcript-wave" aria-hidden="true">{[18,30,45,24,58,36,68,44,28,55,74,42,62,32,50,70,38,24,54,35,64,46,26,40].map((height, i) => <i key={i} style={{ '--bar-height': `${height}px`, '--bar-delay': `${i * .08}s` }} />)}</div>;
 }
 
-function TranscriptPreview() {
+export function TranscriptPreview() {
   const [source, setSource] = useState('audio');
   return <div className="transcript-preview">
     <div className="transcript-preview-top"><span>FROM RECORDING TO TEXT</span><span>ILLUSTRATION</span></div>
