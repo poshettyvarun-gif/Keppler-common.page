@@ -51,7 +51,7 @@ function ProjectsDropdown({ onNavigate }) {
 
   return <div className="projects-dropdown" ref={dropdownRef}>
     <button className="projects-trigger" type="button" aria-expanded={expanded} aria-controls="projects-list" onClick={() => setExpanded(value => !value)}>
-      <span className="nav-grid-icon" aria-hidden="true"><i /><i /><i /><i /></span> Projects <span className="projects-chevron" aria-hidden="true" />
+      <span className="nav-grid-icon" aria-hidden="true"><i /><i /><i /><i /></span> Features <span className="projects-chevron" aria-hidden="true" />
     </button>
     {expanded && <div className="projects-list" id="projects-list">
       <div className="projects-menu-heading"><span>THE KEPPLER PORTFOLIO</span><span>03</span></div>
