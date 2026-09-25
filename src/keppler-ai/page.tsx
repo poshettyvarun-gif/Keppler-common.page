@@ -1,5 +1,3 @@
-import MobileNav from './MobileNav';
-import ContactForm from './ContactForm';
 import DocumentSamples from './DocumentSamples';
 
 const Logo = () => (
@@ -11,12 +9,6 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Keppler AI home"><Logo /></a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#capabilities">Platform</a><a href="#languages">Languages</a><a href="#industries">Solutions</a>
-          <a href="#security">Security</a><a href="#contact">Contact</a><a href="/about-us/">About Us</a>
-        </nav>
-        <div className="nav-actions"><a className="text-link" href="/login/">Login</a><a className="button small" href="/register/">Register <span>↗</span></a></div>
-        <MobileNav />
       </header>
 
       <section className="hero" id="top">
@@ -152,7 +144,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <ContactForm />
       </section>
 
       <footer><div className="footer-top"><div className="footer-brand"><a className="brand" href="#top"><Logo/></a><p>Multilingual AI OCR engine that reads anything, in any language, at enterprise scale.</p></div><div><h3>Platform</h3><a href="#capabilities">Capabilities</a><a href="#languages">Language Support</a><a href="#security">Security & Compliance</a></div><div><h3>Company</h3><a href="/about-us">About Us</a><a href="#contact">Contact</a><a href="https://kalpratech.com/careers/">Careers ↗</a></div><div><h3>Developers</h3><span>API Docs</span><span>SDKs</span><a href="/contact-us">Talk to Experts</a></div></div><div className="footer-bottom"><span>© 2025 Keppler OCR. All rights reserved.</span><a href="#top">Back to top ↑</a></div></footer>

@@ -232,15 +232,19 @@
 .keppler-ai-page .pill-row span{font-weight:700;color:var(--ink)}
 
 /* contact */
-.keppler-ai-page .contact{display:grid;grid-template-columns:1.05fr .75fr;gap:8vw;background:var(--paper)}
+.keppler-ai-page .contact{display:block;padding-top:52px;padding-bottom:52px;background:var(--paper)}
+.keppler-ai-page .contact-info{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:5vw;align-items:start}
+.keppler-ai-page .contact-info>.kicker,.keppler-ai-page .contact-info>h2,.keppler-ai-page .contact-info>p,.keppler-ai-page .contact-info>.email-link{grid-column:1}
+.keppler-ai-page .contact-info .address-grid{grid-column:2;grid-row:1/5;align-self:center}
 .keppler-ai-page .contact-info>p:nth-of-type(2){color:var(--charcoal);line-height:1.7;font-size:17px;font-weight:600}
-.keppler-ai-page .email-link{display:inline-flex;gap:10px;align-items:center;margin:20px 0 35px;padding-bottom:4px;border-bottom:1px solid var(--ink);color:var(--ink);text-decoration:none;font-family:var(--mono);font-size:15.5px;font-weight:700}
+.keppler-ai-page .email-link{display:inline-flex;justify-self:start;gap:10px;align-items:center;margin:16px 0 0;padding-bottom:4px;border-bottom:1px solid var(--ink);color:var(--ink);text-decoration:none;font-family:var(--mono);font-size:15.5px;font-weight:700}
 .keppler-ai-page .address-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
 .keppler-ai-page .address-grid address{color:var(--muted);font-size:13.5px;font-weight:600;line-height:1.55;font-style:normal;position:relative;padding:20px 18px 18px;border:1px solid var(--line-strong);border-left:3px solid var(--blue);border-radius:var(--radius);background:var(--paper);box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
 .keppler-ai-page .address-grid address:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
 .keppler-ai-page .address-grid address:nth-child(2){border-left-color:var(--red)}
 .keppler-ai-page .address-grid address>span{display:block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px}
 .keppler-ai-page .address-grid b{display:block;color:var(--ink);margin-bottom:6px;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+@media(max-width:900px) and (min-width:621px){.keppler-ai-page .contact-info{display:block}.keppler-ai-page .contact-info .address-grid{margin-top:24px}}
 .keppler-ai-page .contact-form{padding:32px}
 .keppler-ai-page .contact-form h3{font-size:19px;font-weight:600;margin:0 0 20px}
 .keppler-ai-page .contact-form label{display:flex;flex-direction:column;gap:7px;font-family:var(--mono);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);margin-bottom:14px}
@@ -323,7 +327,9 @@
   .keppler-ai-page .industry-list article{grid-template-columns:30px 1fr 20px;padding:18px 16px;margin:0 -16px}
   .keppler-ai-page .industry-list article p{grid-column:2}
   .keppler-ai-page .industry-list article b{grid-column:3;grid-row:1}
-  .keppler-ai-page .contact{grid-template-columns:1fr}
+  .keppler-ai-page .contact{padding-top:36px;padding-bottom:36px}
+  .keppler-ai-page .contact-info{display:block}
+  .keppler-ai-page .contact-info .address-grid{margin-top:24px}
   .keppler-ai-page .address-grid{grid-template-columns:1fr}
   .keppler-ai-page .contact-form{padding:22px}
   .keppler-ai-page .footer-top{grid-template-columns:1fr 1fr;gap:32px}
