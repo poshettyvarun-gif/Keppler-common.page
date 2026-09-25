@@ -3,10 +3,12 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 import KepplerPage from './keppler-ai/page.tsx';
 import AstryxPage from './astryx/AsTryxPage.jsx';
+import TranscriptionPage from './transcription/TranscriptionPage.jsx';
 import './keppler-ai/styles.css';
 
 const products = {
   ai: { name: 'KEPPLER AI', url: '/keppler-ai' },
+  transcription: { name: 'Audio & Video to Text', url: '/audio-video-to-text' },
   astryx: { name: 'KEPPLER ASTRYX', url: '/keppler-astryx' },
 };
 function Arrow({ diagonal = false }) {
@@ -20,7 +22,7 @@ function Logo() {
   return <a className="logo" href="/#top" aria-label="KEPPLER AI home"><img src="/keppler-logo.png" alt="KEPPLER AI" /></a>;
 }
 function ProductSelect() {
-  return <label className="product-select"><span>YOUR NEXT MOVE</span><select defaultValue="" aria-label="Choose a product to visit" onChange={e => { if (products[e.target.value]) window.location.assign(products[e.target.value].url); }}><option value="" disabled>Select a product ↗</option><option value="ai">KEPPLER AI — Documents</option><option value="astryx">KEPPLER ASTRYX — Attendance</option></select></label>;
+  return <label className="product-select"><span>YOUR NEXT MOVE</span><select defaultValue="" aria-label="Choose a product to visit" onChange={e => { if (products[e.target.value]) window.location.assign(products[e.target.value].url); }}><option value="" disabled>Select a product ↗</option><option value="ai">KEPPLER AI — Documents</option><option value="transcription">Audio &amp; Video to Text</option><option value="astryx">KEPPLER ASTRYX — Attendance</option></select></label>;
 }
 function ProjectsDropdown({ onNavigate }) {
   const [expanded, setExpanded] = useState(false);
@@ -53,7 +55,7 @@ function ProjectsDropdown({ onNavigate }) {
     {expanded && <div className="projects-list" id="projects-list">
       <div className="projects-menu-heading"><span>THE KEPPLER PORTFOLIO</span><span>03</span></div>
       <a href="/keppler-ai" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-documents.png" alt="" /></span><span className="project-menu-copy">Document OCR<small>Multilingual AI OCR Platform</small></span><Arrow diagonal /></a>
-      <button type="button" disabled><span className="project-menu-visual audio-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span><span className="project-menu-copy">Audio &amp; Video to Text<small>Turn audio and video into text</small></span></button>
+      <a href="/audio-video-to-text" onClick={closeMenu}><span className="project-menu-visual audio-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span><span className="project-menu-copy">Audio &amp; Video to Text<small>Turn audio and video into text</small></span><Arrow diagonal /></a>
       <a href="/keppler-astryx" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-attendance.png" alt="" /></span><span className="project-menu-copy">Employee Attendance<small>KEPPLER ASTRYX</small></span><Arrow diagonal /></a>
     </div>}
   </div>;
@@ -63,7 +65,7 @@ function Header() {
   return <header className="header"><Logo /><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span>{open ? '−' : '+'}</span></button><nav className={open ? 'open' : ''} aria-label="Main navigation"><div className="nav-primary"><ProjectsDropdown onNavigate={() => setOpen(false)} /><a className="nav-contact" href="/#contact" onClick={() => setOpen(false)}>Contact</a></div><div className="nav-actions"><div className="nav-account-group" aria-label="Account"><button className="nav-account" type="button" disabled>Login</button><button className="nav-account nav-register" type="button" disabled>Register</button></div><a className="nav-cta" href="/#products" onClick={() => setOpen(false)}>Explore products <Arrow diagonal /></a></div></nav></header>;
 }
 function Hero() {
-  return <section className="hero" aria-labelledby="hero-title"><div className="habitat-scene"><div className="hero-video-layer"><img className="hero-image" src="/habitat-hero.png" alt="" aria-hidden="true" fetchPriority="high" /><video className="hero-video" src="/AI-moving.mp4" autoPlay poster="/habitat-hero.png" muted loop playsInline aria-label="Animated workplace scene with people moving" /></div><div className="hero-wash" /><div className="hero-copy"><p className="eyebrow"><span className="brand-strokes">///</span> INTELLIGENCE, IN MOTION</p><h1 id="hero-title">Clarity moves<br />work <em>forward.</em></h1><p className="hero-description">From the information in your documents to the people at your workplace. Two focused products. A clearer way to work.</p><a className="button primary" href="#products">Discover the possibilities <Arrow /></a><div className="hero-signature"><span /> BUILT AROUND YOUR ENTERPRISE</div></div><a className="scene-label scene-doc" href="#keppler-ai"><span className="scene-icon"><Icon type="document" /></span><span><small>01 / DOCUMENT INTELLIGENCE</small><strong>Information. Unlocked.</strong></span><Arrow diagonal /></a><a className="scene-label scene-people" href="#astryx"><span className="scene-icon"><Icon type="location" /></span><span><small>02 / EMPLOYEE ATTENDANCE</small><strong>People. In context.</strong></span><Arrow diagonal /></a><span className="scene-caption">A connected workplace, imagined.</span></div><div className="product-dock" id="products"><div className="dock-intro"><span className="eyebrow">THE KEPPLER PORTFOLIO</span><h2>One vision.<br />Two possibilities.</h2></div><a className="dock-product" href="#keppler-ai"><Icon type="document" /><span><strong>KEPPLER AI</strong><small>Intelligence for every document</small></span><Arrow diagonal /></a><a className="dock-product" href="#astryx"><Icon type="location" /><span><strong>KEPPLER ASTRYX</strong><small>Attendance with workplace context</small></span><Arrow diagonal /></a><ProductSelect /></div></section>;
+  return <section className="hero" aria-labelledby="hero-title"><div className="habitat-scene"><div className="hero-video-layer"><img className="hero-image" src="/habitat-hero.png" alt="" aria-hidden="true" fetchPriority="high" /><video className="hero-video" src="/AI-moving.mp4" autoPlay poster="/habitat-hero.png" muted loop playsInline aria-label="Animated workplace scene with people moving" /></div><div className="hero-wash" /><div className="hero-copy"><p className="eyebrow"><span className="brand-strokes">///</span> INTELLIGENCE, IN MOTION</p><h1 id="hero-title">Clarity moves<br />work <em>forward.</em></h1><p className="hero-description">From the information in your documents to the people at your workplace. Focused products. A clearer way to work.</p><a className="button primary" href="#products">Discover the possibilities <Arrow /></a><div className="hero-signature"><span /> BUILT AROUND YOUR ENTERPRISE</div></div><a className="scene-label scene-doc" href="#keppler-ai"><span className="scene-icon"><Icon type="document" /></span><span><small>01 / DOCUMENT INTELLIGENCE</small><strong>Information. Unlocked.</strong></span><Arrow diagonal /></a><a className="scene-label scene-people" href="#astryx"><span className="scene-icon"><Icon type="location" /></span><span><small>02 / EMPLOYEE ATTENDANCE</small><strong>People. In context.</strong></span><Arrow diagonal /></a><span className="scene-caption">A connected workplace, imagined.</span></div><div className="product-dock" id="products"><div className="dock-intro"><span className="eyebrow">THE KEPPLER PORTFOLIO</span><h2>One vision.<br />More possibilities.</h2></div><a className="dock-product" href="#keppler-ai"><Icon type="document" /><span><strong>KEPPLER AI</strong><small>Intelligence for every document</small></span><Arrow diagonal /></a><a className="dock-product" href="#astryx"><Icon type="location" /><span><strong>KEPPLER ASTRYX</strong><small>Attendance with workplace context</small></span><Arrow diagonal /></a><ProductSelect /></div></section>;
 }
 const productData = [
   { id: 'keppler-ai', number: '01', name: 'KEPPLER AI', label: 'DOCUMENT INTELLIGENCE', title: <>More than a page.<br /><em>A world of information.</em></>, description: 'Turn complex documents into information your business can use. AI-powered OCR reads, extracts, and structures content from scanned, handwritten, and multilingual material.', image: '/habitat-documents.png', alt: 'Sculptural document sheets with translucent blue information layers', href: products.ai.url, link: 'Explore KEPPLER AI', steps: ['Read', 'Extract', 'Structure'], features: [['Everyday inputs. Complex pages.', 'Process PDFs, images, photos, and handwritten documents.'], ['Language is not a boundary.', 'Work with global and Indian scripts, including mixed-language pages.'], ['Ready for your workflows.', 'Structured JSON, CSV, and XML output with REST API integration.']], useCases: ['Records & archives', 'KYC & statements', 'Healthcare documents', 'Legal files'], benefit: 'Less time finding information. More time putting it to work.', icon: 'document' },
@@ -111,6 +113,11 @@ function App() {
 const route = window.location.pathname.replace(/\/$/, '');
 const isKepplerAiRoute = route === '/keppler-ai';
 const isAstryxRoute = route === '/keppler-astryx';
+const isTranscriptionRoute = route === '/audio-video-to-text';
+if (isTranscriptionRoute) {
+  document.title = 'Audio & Video to Text — KEPPLER AI';
+  document.querySelector('meta[name="description"]')?.setAttribute('content', 'Turn spoken content from audio and video recordings into readable text. Explore audio and video transcription with KEPPLER.');
+}
 if (isAstryxRoute) {
   document.title = 'KEPPLER ASTRYX — Employee Attendance';
   document.querySelector('meta[name="description"]')?.setAttribute('content', 'Employee attendance with selfie and location context at the assigned workplace. Explore KEPPLER ASTRYX.');
@@ -120,4 +127,4 @@ if (isKepplerAiRoute) {
   document.querySelector('meta[name="description"]')?.setAttribute('content', 'AI-powered OCR that reads, understands, and structures complex documents in any language at enterprise scale.');
   document.querySelector('link[rel="icon"]')?.setAttribute('href', '/keppler-ai/favicon.svg');
 }
-createRoot(document.getElementById('root')).render(isKepplerAiRoute ? <><Header /><div className="keppler-ai-page"><KepplerPage /></div></> : isAstryxRoute ? <><Header /><AstryxPage /></> : <App />);
+createRoot(document.getElementById('root')).render(isKepplerAiRoute ? <><Header /><div className="keppler-ai-page"><KepplerPage /></div></> : isAstryxRoute ? <><Header /><AstryxPage /></> : isTranscriptionRoute ? <><Header /><TranscriptionPage /></> : <App />);
