@@ -1,4 +1,4 @@
-.transcription-hero{max-width:1552px;width:calc(100% - 48px);margin:24px auto 0;padding:65px 6%;display:grid;grid-template-columns:1.05fr 1fr;gap:7%;align-items:center;border:1px solid #e1ecf7;border-radius:18px;background:radial-gradient(ellipse at 95% 80%,#cce6ff80,transparent 55%),linear-gradient(120deg,#f8fbff,#edf5fd)}
+.transcription-hero{max-width:1552px;width:calc(100% - 48px);margin:24px auto 0;padding:65px 6%;display:grid;grid-template-columns:1.05fr 1fr;gap:7%;align-items:center;border:1px solid #e1ecf7;border-radius:18px;background:var(--site-page-bg)}
 .transcription-hero .eyebrow{font-size:11px;letter-spacing:.12em;color:#58718d}
 .transcription-hero h1{font-size:clamp(42px,4.8vw,72px);line-height:1.1;letter-spacing:-.06em;margin:26px 0}
 .transcription-hero-copy>p:not(.eyebrow){max-width:460px;font-size:18px;line-height:1.85;color:#455b74}
