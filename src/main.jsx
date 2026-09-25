@@ -1,84 +1,80 @@
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
+import KepplerPage from './keppler-ai/page.tsx';
+import './keppler-ai/styles.css';
 
-const productLinks = {
-  ai: 'https://keppler-page.vercel.app/#top',
-  astryx: 'https://vercel.com/kalpratechh/location-tracker',
+const products = {
+  ai: { name: 'KEPPLER AI', url: '/keppler-ai' },
+  astryx: { name: 'KEPPLER ASTRYX', url: 'https://location-tracker-flame-alpha.vercel.app/' },
 };
-
-function Arrow({ small = false }) {
-  return <svg className={small ? 'arrow small' : 'arrow'} viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg>;
+function Arrow({ diagonal = false }) {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? 'M5 19 19 5M6 5h13v13' : 'M4 12h15m-6-6 6 6-6 6'} /></svg>;
 }
-
-function Mark() {
-  return <a className="mark" href="#top" aria-label="KEPPLER AI home"><span className="mark-shape">K</span><span>KEPPLER<span className="mark-ai"> AI</span></span></a>;
+function Icon({ type }) {
+  const paths = { document: 'M7 3h7l4 4v14H7zM14 3v5h4M10 12h5m-5 4h5', location: 'M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0ZM14 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0' };
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={paths[type]} /></svg>;
 }
-
-function Pill({ children, dark = false }) {
-  return <span className={`pill${dark ? ' dark' : ''}`}><i />{children}</span>;
+function Logo() {
+  return <a className="logo" href="#top" aria-label="KEPPLER AI home"><img src="/keppler-logo.png" alt="KEPPLER AI" /></a>;
 }
-
 function ProductSelect() {
-  const [value, setValue] = useState('');
-  function change(event) {
-    const chosen = event.target.value;
-    setValue(chosen);
-    if (chosen) window.location.assign(productLinks[chosen]);
+  return <label className="product-select"><span>YOUR NEXT MOVE</span><select defaultValue="" aria-label="Choose a product to visit" onChange={e => { if (products[e.target.value]) window.location.assign(products[e.target.value].url); }}><option value="" disabled>Select a product ↗</option><option value="ai">KEPPLER AI — Documents</option><option value="astryx">KEPPLER ASTRYX — Attendance</option></select></label>;
+}
+function Header() {
+  const [open, setOpen] = useState(false);
+  return <header className="header"><Logo /><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span>{open ? '−' : '+'}</span></button><nav className={open ? 'open' : ''} aria-label="Main navigation"><a href="#keppler-ai" onClick={() => setOpen(false)}>Document intelligence</a><a href="#astryx" onClick={() => setOpen(false)}>Employee attendance</a><a className="nav-cta" href="#products" onClick={() => setOpen(false)}>Explore products <Arrow diagonal /></a></nav></header>;
+}
+function Hero() {
+  return <section className="hero" aria-labelledby="hero-title"><div className="habitat-scene"><div className="hero-video-layer"><img className="hero-image" src="/habitat-hero.png" alt="" aria-hidden="true" fetchPriority="high" /><video className="hero-video" src="/AI-moving.mp4" autoPlay poster="/habitat-hero.png" muted loop playsInline aria-label="Animated workplace scene with people moving" /></div><div className="hero-wash" /><div className="hero-copy"><p className="eyebrow"><span className="brand-strokes">///</span> INTELLIGENCE, IN MOTION</p><h1 id="hero-title">Clarity moves<br />work <em>forward.</em></h1><p className="hero-description">From the information in your documents to the people at your workplace. Two focused products. A clearer way to work.</p><a className="button primary" href="#products">Discover the possibilities <Arrow /></a><div className="hero-signature"><span /> BUILT AROUND YOUR ENTERPRISE</div></div><a className="scene-label scene-doc" href="#keppler-ai"><span className="scene-icon"><Icon type="document" /></span><span><small>01 / DOCUMENT INTELLIGENCE</small><strong>Information. Unlocked.</strong></span><Arrow diagonal /></a><a className="scene-label scene-people" href="#astryx"><span className="scene-icon"><Icon type="location" /></span><span><small>02 / EMPLOYEE ATTENDANCE</small><strong>People. In context.</strong></span><Arrow diagonal /></a><span className="scene-caption">A connected workplace, imagined.</span></div><div className="product-dock" id="products"><div className="dock-intro"><span className="eyebrow">THE KEPPLER PORTFOLIO</span><h2>One vision.<br />Two possibilities.</h2></div><a className="dock-product" href="#keppler-ai"><Icon type="document" /><span><strong>KEPPLER AI</strong><small>Intelligence for every document</small></span><Arrow diagonal /></a><a className="dock-product" href="#astryx"><Icon type="location" /><span><strong>KEPPLER ASTRYX</strong><small>Attendance with workplace context</small></span><Arrow diagonal /></a><ProductSelect /></div></section>;
+}
+const productData = [
+  { id: 'keppler-ai', number: '01', name: 'KEPPLER AI', label: 'DOCUMENT INTELLIGENCE', title: <>More than a page.<br /><em>A world of information.</em></>, description: 'Turn complex documents into information your business can use. AI-powered OCR reads, extracts, and structures content from scanned, handwritten, and multilingual material.', image: '/habitat-documents.png', alt: 'Sculptural document sheets with translucent blue information layers', href: products.ai.url, link: 'Explore KEPPLER AI', steps: ['Read', 'Extract', 'Structure'], features: [['Everyday inputs. Complex pages.', 'Process PDFs, images, photos, and handwritten documents.'], ['Language is not a boundary.', 'Work with global and Indian scripts, including mixed-language pages.'], ['Ready for your workflows.', 'Structured JSON, CSV, and XML output with REST API integration.']], useCases: ['Records & archives', 'KYC & statements', 'Healthcare documents', 'Legal files'], benefit: 'Less time finding information. More time putting it to work.', icon: 'document' },
+  { id: 'astryx', number: '02', name: 'KEPPLER ASTRYX', label: 'EMPLOYEE ATTENDANCE', title: <>Every check-in.<br /><em>A clearer picture.</em></>, description: 'Attendance grounded in the workplace. Employees capture a selfie and share their location to help verify attendance at their assigned workplace.', image: '/habitat-attendance.png', alt: 'Employee selfie check-in on a phone in a bright contemporary workplace', href: products.astryx.url, link: 'Explore KEPPLER ASTRYX', steps: ['Capture a selfie', 'Share location', 'Record attendance'], features: [['A selfie at the moment.', 'Camera-based check-in adds visual context to attendance.'], ['The workplace matters.', 'Shared location connects a check-in to the assigned workplace.'], ['Clarity for enterprise teams.', 'Bring selfie and location context together for attendance review.']], useCases: ['Distributed offices', 'Retail teams', 'Project sites', 'Service operations'], benefit: 'More context for managers. A consistent check-in for employees.', icon: 'location' },
+];
+function ProductSection({ product: p }) {
+  return <section className={`product-section ${p.id}`} id={p.id} aria-labelledby={`${p.id}-title`}><div className="product-scene reveal">{p.id === "keppler-ai" ? <video className="product-scene-video" src="/paper.mp4" poster={p.image} autoPlay muted loop playsInline preload="metadata" aria-label="Animated document intelligence visual" /> : <img src={p.image} alt={p.alt} loading="lazy" />}<div className="product-wash" /><div className="product-copy"><p className="eyebrow"><span className="product-number">{p.number}</span>{p.label}</p><p className="product-name">{p.name}</p><h2 id={`${p.id}-title`}>{p.title}</h2><p className="product-description">{p.description}</p><a className="button primary" href={p.href} target={p.id === "keppler-ai" ? undefined : "_blank"} rel={p.id === "keppler-ai" ? undefined : "noreferrer"}>{p.link}<Arrow diagonal /></a></div><div className="workflow" aria-label={`${p.name} workflow`}>{p.steps.map((step, i) => <React.Fragment key={step}><span><b>0{i + 1}</b>{step}</span>{i < 2 && <Arrow />}</React.Fragment>)}</div><span className="visual-note">CONCEPT VISUAL</span></div><div className="product-details"><div className="feature-grid">{p.features.map(([title, text], i) => <article className="feature reveal" key={title}><span className="feature-index">{p.number}.{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div><div className="use-cases reveal"><span className="eyebrow">MADE FOR REAL WORK</span><div>{p.useCases.map(x => <span key={x}>{x}</span>)}</div></div><div className="benefit reveal"><Icon type={p.icon} /><p>{p.benefit}</p><a href={p.href} target={p.id === "keppler-ai" ? undefined : "_blank"} rel={p.id === "keppler-ai" ? undefined : "noreferrer"} aria-label={`Visit ${p.name}`}><Arrow diagonal /></a></div></div></section>;
+}
+function ContextSection({ productId }) {
+  return productId === 'keppler-ai' ? (
+    <section className="context-section reveal" aria-labelledby="document-flow-title">
+      <div className="context-image"><img src="/habitat-document-workflow.png" alt="A document connected to structured information on a laptop" width="1536" height="1024" loading="lazy" /></div>
+      <div className="context-copy"><p className="eyebrow">KEPPLER AI / DOCUMENT WORKFLOW</p><h2 id="document-flow-title">From source documents<br /><em>to structured data.</em></h2><p>Read scanned PDFs, photos, and handwritten pages. Extract text, fields, and tables into JSON, CSV, or XML for your existing workflows.</p></div>
+    </section>
+  ) : (
+    <section className="context-section context-reverse reveal" aria-labelledby="attendance-context-title">
+      <div className="context-image"><img src="/habitat-workplace-checkin.png" alt="An employee taking a selfie at the workplace beside a location-pin illustration" width="1536" height="1024" loading="lazy" /></div>
+      <div className="context-copy"><p className="eyebrow">KEPPLER ASTRYX / WORKPLACE CHECK-IN</p><h2 id="attendance-context-title">A selfie. A location.<br /><em>One attendance record.</em></h2><p>Employees capture a selfie and share their location at check-in. Together, these provide context for reviewing attendance at the assigned workplace.</p></div>
+    </section>
+  );
+}
+function ContactSection() {
+  function prepareMessage(event) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const body = `${data.get('message')}\n\n${data.get('name')}\n${data.get('email')}`;
+    window.location.href = `mailto:info@thekeppler.com?subject=${encodeURIComponent(data.get('subject'))}&body=${encodeURIComponent(body)}`;
   }
-  return <label className="product-select"><span className="select-label">Explore a product</span><select aria-label="Choose a Keppler product" value={value} onChange={change}><option value="">Select KEPPLER AI or ASTRYX</option><option value="ai">KEPPLER AI — Document intelligence</option><option value="astryx">KEPPLER ASTRYX — Attendance</option></select><span className="select-chevron">⌄</span></label>;
+  return <section className="contact-section" id="contact" aria-labelledby="contact-title">
+    <div className="contact-heading reveal"><p className="eyebrow">GET IN TOUCH</p><h2 id="contact-title">Let’s make your<br />work <em>clearer.</em></h2><p>Tell us about your business needs. We’ll help you find the right solution.</p></div>
+    <div className="contact-surface reveal">
+      <div className="contact-details"><a className="contact-email" href="mailto:info@thekeppler.com">info@thekeppler.com <Arrow diagonal /></a><div className="contact-office"><span className="eyebrow">01 / USA</span><address>13111 Westheimer Rd., Suite 311<br />Houston, TX, 77077</address></div><div className="contact-office"><span className="eyebrow">02 / INDIA</span><address>Flat 301, 10-1-6&7, Ram Krishna Sadan<br />Sai Krupa Enclave Colony, Khajaguda,<br />Hyderabad 500032</address></div></div>
+      <form className="contact-form" onSubmit={prepareMessage}><h3>Send us a message</h3><div className="contact-fields"><label>Full name<input name="name" autoComplete="name" placeholder="Your full name" required maxLength={120} /></label><label>Email address<input name="email" type="email" autoComplete="email" placeholder="you@company.com" required maxLength={254} /></label><label className="contact-wide">Subject<input name="subject" placeholder="How can we help?" required maxLength={200} /></label><label className="contact-wide">Your message<textarea name="message" placeholder="Tell us about your requirements…" required rows={4} maxLength={4000} /></label></div><div className="contact-submit"><button className="button primary" type="submit">Send message <Arrow diagonal /></button><span>Opens your email app to send.</span></div></form>
+    </div>
+  </section>;
 }
-
-function Reveal({ children, className = '' }) {
-  return <div className={`reveal ${className}`}>{children}</div>;
-}
-
-function DocumentVisual() {
-  return <div className="doc-visual" aria-label="Illustration of a document becoming structured data"><div className="paper"><div className="paper-cap">SOURCE DOCUMENT</div><div className="paper-lines"><b>Onboarding form</b><span /><span className="long" /><span /><div className="paper-table"><i /><i /><i /><i /><i /><i /></div></div><div className="scan-line" /></div><div className="data-card"><div className="data-top"><span>AI EXTRACT</span><b>LIVE</b></div><div className="data-row"><em>name</em><strong>structured</strong></div><div className="data-row"><em>fields</em><strong>recognized</strong></div><div className="data-row"><em>table</em><strong>preserved</strong></div><div className="data-bars"><i /><i /><i /><i /></div></div><span className="float-tag tag-one">MULTILINGUAL</span><span className="float-tag tag-two">JSON · CSV · XML</span></div>;
-}
-
-function AttendanceVisual() {
-  return <div className="attendance-visual" aria-label="Illustration of attendance verification at a workplace"><div className="glow" /><div className="map"><div className="map-road r1" /><div className="map-road r2" /><div className="map-road r3" /><div className="map-label">WORKPLACE ZONE</div><div className="pin"><div className="pin-inner">✓</div></div><div className="radius" /></div><div className="selfie-card"><div className="selfie-head" /><div className="selfie-body" /><span>SELFIE VERIFIED</span><b>09:02 AM</b></div><div className="verified"><i>✓</i> Attendance recorded</div></div>;
-}
-
-const ocrFeatures = [
-  ['AI-trained OCR', 'Extracts text from scanned PDFs, images, photos, and complex documents with layout fidelity.'],
-  ['Multilingual understanding', 'Designed for global and Indian scripts, including mixed-language documents on one page.'],
-  ['Structured outputs', 'Preserves tables, fields, and relationships for JSON, CSV, or XML workflows.'],
-  ['Enterprise APIs', 'Supports batch pipelines and real-time document processing through REST APIs.'],
-];
-
-const attendanceFeatures = [
-  ['Location-aware check-in', 'Captures an employee’s shared location at the time they record attendance.'],
-  ['Selfie confirmation', 'A camera-based check-in creates a clear record alongside the attendance event.'],
-  ['Assigned workplace context', 'Helps teams validate presence against the workplace an employee is assigned to.'],
-  ['Operational visibility', 'Gives managers a practical attendance record for distributed teams and sites.'],
-];
-
-function FeatureGrid({ items, accent }) {
-  return <div className={`feature-grid ${accent}`}>{items.map(([title, text], index) => <Reveal key={title}><article className="feature"><span className="feature-number">0{index + 1}</span><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div>;
-}
-
-function ProductSection({ id, eyebrow, title, description, href, cta, visual, items, accent, useCases, benefits }) {
-  return <section className={`product-section ${accent}`} id={id}><div className="section-shell"><div className="product-intro"><Reveal><Pill dark={accent === 'astryx'}>{eyebrow}</Pill></Reveal><Reveal><h2>{title}</h2></Reveal><Reveal><p className="lede">{description}</p></Reveal><Reveal><a className={`text-link ${accent === 'astryx' ? 'light' : ''}`} href={href} target="_blank" rel="noreferrer">{cta}<Arrow small /></a></Reveal></div><Reveal className="visual-wrap">{visual}</Reveal></div><FeatureGrid items={items} accent={accent} /><div className="details-row"><div><span className="detail-label">USE CASES</span><p>{useCases}</p></div><div><span className="detail-label">ENTERPRISE BENEFIT</span><p>{benefits}</p></div></div></section>;
-}
-
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('in-view'); }), { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-  return <main id="top"><header><div className="nav-shell"><Mark /><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation"><span /><span /></button><nav className={menuOpen ? 'open' : ''}><a href="#keppler-ai" onClick={() => setMenuOpen(false)}>KEPPLER AI</a><a href="#astryx" onClick={() => setMenuOpen(false)}>ASTRYX</a><a href="#why-keppler" onClick={() => setMenuOpen(false)}>WHY KEPPLER</a></nav><a className="nav-cta" href="#products">Explore products <Arrow small /></a></div></header>
-    <section className="hero"><div className="hero-grid" /><div className="hero-content"><Reveal><Pill>ENTERPRISE INTELLIGENCE, CLARIFIED</Pill></Reveal><Reveal><h1>Turn the moments that matter into <span>clear decisions.</span></h1></Reveal><Reveal><p className="hero-copy">KEPPLER brings document intelligence and workplace attendance into a single, focused enterprise portfolio—built to make operations more legible, reliable, and ready to move.</p></Reveal><Reveal className="hero-actions"><ProductSelect /><a href="#products" className="primary-button">Meet the products <Arrow /></a></Reveal></div><div className="hero-orbit" aria-hidden="true"><div className="orbit-ring ring-a" /><div className="orbit-ring ring-b" /><div className="orbit-core"><span>01</span><b>INTELLIGENCE<br />IN MOTION</b></div><div className="orbit-node node-a"><i />DOCS</div><div className="orbit-node node-b"><i />PEOPLE</div><div className="orbit-label">KEPPLER<br />ENTERPRISE<br />SYSTEMS</div></div><div className="hero-footer"><span>SCROLL TO EXPLORE</span><span className="scroll-line" /><span>01 / 02</span></div></section>
-    <section className="statement" id="products"><Pill>ONE COMPANY · TWO PRODUCTS</Pill><h2>Intelligence for what’s <em>on the page</em> and who’s <em>on site.</em></h2><p>Two distinct products. One purpose: give enterprise teams a more dependable view of their work.</p></section>
-    <ProductSection id="keppler-ai" eyebrow="01 · KEPPLER AI" title={<>Make every document <span>operational.</span></>} description="AI-powered OCR and document intelligence for teams processing multilingual, low-quality, handwritten, and legacy documents at enterprise scale." href={productLinks.ai} cta="Visit KEPPLER AI" visual={<DocumentVisual />} items={ocrFeatures} accent="ocr" useCases="Archives and citizen records · Medical records and prescriptions · KYC and statements · Contracts and court records · Operations" benefits="Move complex documents into searchable, structured information while retaining the context teams depend on." />
-    <ProductSection id="astryx" eyebrow="02 · KEPPLER ASTRYX" title={<>Attendance, <span>grounded in place.</span></>} description="A location- and camera-based attendance experience for enterprise teams. Employees record a selfie and share their location to help verify attendance at their assigned workplace." href={productLinks.astryx} cta="Explore ASTRYX" visual={<AttendanceVisual />} items={attendanceFeatures} accent="astryx" useCases="Field teams · Distributed offices · Retail locations · Facilities and service operations · Project sites" benefits="Build a consistent, context-rich attendance record without turning everyday workforce operations into a manual reconciliation exercise." />
-    <section className="why" id="why-keppler"><div><Pill>WHY KEPPLER</Pill><h2>Enterprise clarity, without the clutter.</h2></div><div className="why-points"><article><b>01</b><h3>Focused products</h3><p>Purpose-built tools for two essential operational signals: documents and attendance.</p></article><article><b>02</b><h3>Designed for complexity</h3><p>Clear workflows for real-world documents, distributed teams, and enterprise contexts.</p></article><article><b>03</b><h3>Built to integrate</h3><p>Products designed to fit the way teams already process information and manage operations.</p></article></div></section>
-    <section className="closing"><div className="closing-grid" /><Pill dark>THE NEXT SIGNAL IS CLEAR</Pill><h2>Find the product that fits your operation.</h2><div className="closing-links"><a href={productLinks.ai} target="_blank" rel="noreferrer">KEPPLER AI <Arrow small /></a><a href={productLinks.astryx} target="_blank" rel="noreferrer">KEPPLER ASTRYX <Arrow small /></a></div></section>
-    <footer><Mark /><p>Enterprise intelligence for documents and attendance.</p><span>© 2026 KEPPLER AI</span></footer>
-  </main>;
+  return <div id="top"><a className="skip-link" href="#products">Skip to products</a><Header /><main><Hero /><div className="section-bridge"><span>DOCUMENTS TO DATA. PEOPLE TO PLACE.</span><span>EXPLORE THE TWO SIDES OF CLARITY <Arrow /></span></div>{productData.map(p => <React.Fragment key={p.id}><ProductSection product={p} /><ContextSection productId={p.id} /></React.Fragment>)}<ContactSection /><section className="closing"><p className="eyebrow">YOUR WORK. IN A CLEARER LIGHT.</p><h2>Make your next<br />move <em>intelligent.</em></h2><div><a className="button primary" href={products.ai.url}>KEPPLER AI <Arrow diagonal /></a><a className="button secondary" href={products.astryx.url} target="_blank" rel="noreferrer">KEPPLER ASTRYX <Arrow diagonal /></a></div></section></main><footer><Logo /><p>Document intelligence. Workplace clarity.</p><span>© {new Date().getFullYear()} KEPPLER AI</span></footer></div>;
 }
-
-createRoot(document.getElementById('root')).render(<App />);
+const isKepplerAiRoute = window.location.pathname.replace(/\/$/, '') === '/keppler-ai';
+if (isKepplerAiRoute) {
+  document.title = 'Keppler OCR — Multilingual AI OCR Platform';
+  document.querySelector('meta[name="description"]')?.setAttribute('content', 'AI-powered OCR that reads, understands, and structures complex documents in any language at enterprise scale.');
+  document.querySelector('link[rel="icon"]')?.setAttribute('href', '/keppler-ai/favicon.svg');
+}
+createRoot(document.getElementById('root')).render(isKepplerAiRoute ? <div className="keppler-ai-page"><KepplerPage /></div> : <App />);
