@@ -1,8 +1,5 @@
 import DocumentSamples from './DocumentSamples';
 
-const Logo = () => (
-  <img src="/images/keppler-ai-wordmark.png" alt="Keppler AI — Intelligence for every document" />
-);
 
 export default function Home() {
   return (
@@ -143,7 +140,6 @@ export default function Home() {
         </div>
       </section>
 
-      <footer><div className="footer-top"><div className="footer-brand"><a className="brand" href="#top"><Logo/></a><p>Multilingual AI OCR engine that reads anything, in any language, at enterprise scale.</p></div><div><h3>Platform</h3><a href="#capabilities">Capabilities</a><a href="#languages">Language Support</a><a href="#security">Security & Compliance</a></div><div><h3>Company</h3><a href="/about-us">About Us</a><a href="#contact">Contact</a><a href="https://kalpratech.com/careers/">Careers ↗</a></div><div><h3>Developers</h3><span>API Docs</span><span>SDKs</span><a href="/contact-us">Talk to Experts</a></div></div><div className="footer-bottom"><span>© 2025 Keppler OCR. All rights reserved.</span><a href="#top">Back to top ↑</a></div></footer>
     </main>
   );
 }

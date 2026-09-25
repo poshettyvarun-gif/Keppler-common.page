@@ -45,5 +45,5 @@ export default function TranscriptionPage() {
     <section className="astryx-section astryx-workplaces"><div className="astryx-section-title"><p className="eyebrow">PUT YOUR RECORDINGS TO WORK</p><h2>Keep the conversation<br /><em>within reach.</em></h2><p>Written transcripts give teams another way to revisit recorded discussions and spoken information.</p></div><div className="astryx-workplace-grid">{['Meetings & discussions', 'Interviews', 'Training sessions', 'Presentations'].map((name, i) => <article key={name}><span>0{i + 1}</span><h3>{name}</h3></article>)}</div></section>
 
     <section className="astryx-section astryx-contact" id="contact"><div><p className="eyebrow">GET IN TOUCH</p><h2>Bring your recordings<br /><em>into the conversation.</em></h2><p>Tell us about your audio and video transcription needs. We’ll help you find the right path.</p></div><a className="astryx-email" href="mailto:info@thekeppler.com?subject=Audio%20and%20Video%20to%20Text%20demo%20request">info@thekeppler.com <span aria-hidden="true">↗</span></a></section>
-  </main><footer className="astryx-footer"><a href="/">← All products</a><span>© {new Date().getFullYear()} KEPPLER AI</span><a href="#top">Back to top ↑</a></footer></div>;
+  </main></div>;
 }

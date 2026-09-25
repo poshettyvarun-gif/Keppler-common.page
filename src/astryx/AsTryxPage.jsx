@@ -37,6 +37,5 @@ export default function AstryxPage() {
 
       <section className="astryx-section astryx-contact" id="contact"><div><p className="eyebrow">GET IN TOUCH</p><h2>Bring clarity to<br /><em>workplace attendance.</em></h2><p>Tell us about your employee attendance needs. We’ll help you find the right path.</p></div><a className="astryx-email" href="mailto:info@thekeppler.com?subject=KEPPLER%20ASTRYX%20demo%20request">info@thekeppler.com <span aria-hidden="true">↗</span></a></section>
     </main>
-    <footer className="astryx-footer"><a href="/">← All products</a><span>© {new Date().getFullYear()} KEPPLER AI</span><a href="#top">Back to top ↑</a></footer>
   </div>;
 }

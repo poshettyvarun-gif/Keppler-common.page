@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
+import SiteFooter from './components/SiteFooter.jsx';
 import KepplerPage from './keppler-ai/page.tsx';
 import AstryxPage from './astryx/AsTryxPage.jsx';
 import TranscriptionPage, { TranscriptPreview } from './transcription/TranscriptionPage.jsx';
@@ -110,7 +111,7 @@ function App() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-  return <div id="top"><a className="skip-link" href="#products">Skip to products</a><Header /><main><Hero /><div className="section-bridge"><span>DOCUMENTS. PEOPLE. SPOKEN WORDS.</span><span>EXPLORE ALL THREE PRODUCTS <Arrow /></span></div>{productData.map(p => <React.Fragment key={p.id}><ProductSection product={p} /><ContextSection productId={p.id} /></React.Fragment>)}<ContactSection /><section className="closing"><p className="eyebrow">YOUR WORK. IN A CLEARER LIGHT.</p><h2>Make your next<br />move <em>intelligent.</em></h2><div><a className="button secondary" href={products.ai.url}>KEPPLER AI <Arrow diagonal /></a><a className="button secondary" href={products.astryx.url}>KEPPLER ASTRYX <Arrow diagonal /></a><a className="button secondary" href={products.transcription.url}>Audio &amp; Video to Text <Arrow diagonal /></a></div></section></main><footer><Logo /><p>Document intelligence. Workplace clarity. Spoken words to text.</p><span>© {new Date().getFullYear()} KEPPLER AI</span></footer></div>;
+  return <div id="top"><a className="skip-link" href="#products">Skip to products</a><Header /><main><Hero /><div className="section-bridge"><span>DOCUMENTS. PEOPLE. SPOKEN WORDS.</span><span>EXPLORE ALL THREE PRODUCTS <Arrow /></span></div>{productData.map(p => <React.Fragment key={p.id}><ProductSection product={p} /><ContextSection productId={p.id} /></React.Fragment>)}<ContactSection /><section className="closing"><p className="eyebrow">YOUR WORK. IN A CLEARER LIGHT.</p><h2>Make your next<br />move <em>intelligent.</em></h2><div><a className="button secondary" href={products.ai.url}>KEPPLER AI <Arrow diagonal /></a><a className="button secondary" href={products.astryx.url}>KEPPLER ASTRYX <Arrow diagonal /></a><a className="button secondary" href={products.transcription.url}>Audio &amp; Video to Text <Arrow diagonal /></a></div></section></main></div>;
 }
 const route = window.location.pathname.replace(/\/$/, '');
 const isKepplerAiRoute = route === '/keppler-ai';
@@ -129,4 +130,4 @@ if (isKepplerAiRoute) {
   document.querySelector('meta[name="description"]')?.setAttribute('content', 'AI-powered OCR that reads, understands, and structures complex documents in any language at enterprise scale.');
   document.querySelector('link[rel="icon"]')?.setAttribute('href', '/keppler-ai/favicon.svg');
 }
-createRoot(document.getElementById('root')).render(isKepplerAiRoute ? <><Header /><div className="keppler-ai-page"><KepplerPage /></div></> : isAstryxRoute ? <><Header /><AstryxPage /></> : isTranscriptionRoute ? <><Header /><TranscriptionPage /></> : <App />);
+createRoot(document.getElementById('root')).render(<>{isKepplerAiRoute ? <><Header /><div className="keppler-ai-page"><KepplerPage /></div></> : isAstryxRoute ? <><Header /><AstryxPage /></> : isTranscriptionRoute ? <><Header /><TranscriptionPage /></> : <App />}<SiteFooter /></>);
