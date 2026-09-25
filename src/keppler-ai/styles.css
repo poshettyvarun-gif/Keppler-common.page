@@ -21,12 +21,13 @@
 .keppler-ai-page *{box-sizing:border-box;min-width:0}
 .keppler-ai-page{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 .keppler-ai-page{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--font-geist-sans),Arial,sans-serif;-webkit-font-smoothing:antialiased;--mono:var(--font-geist-mono),ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:hidden;max-width:100%}
+.keppler-ai-page main,.keppler-ai-page .hero,.keppler-ai-page .section,.keppler-ai-page footer{background:#fff}
 .keppler-ai-page a{color:inherit}
 .keppler-ai-page img{max-width:100%}
 .keppler-ai-page :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 
 /* header */
-.keppler-ai-page .site-header{height:84px;display:flex;align-items:center;gap:20px;padding:0 clamp(20px,4.7vw,72px);border-bottom:1px solid var(--ink);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20}
+.keppler-ai-page .site-header{height:84px;display:flex;align-items:center;gap:20px;padding:0 clamp(20px,4.7vw,72px);border-bottom:1px solid var(--ink);background:#fff;position:sticky;top:0;z-index:20}
 .keppler-ai-page .brand{display:flex;align-items:center;justify-content:flex-start;text-decoration:none;flex:0 0 auto}
 .keppler-ai-page .brand img{display:block;width:clamp(210px,18vw,270px);height:auto;object-fit:contain;object-position:left center}
 .keppler-ai-page .desktop-nav{margin-left:auto;display:flex;gap:clamp(16px,1.8vw,26px);align-items:center}
@@ -176,9 +177,9 @@
 .keppler-ai-page .deploy-grid h3{font-size:19px;font-weight:600;margin:40px 0 10px}
 .keppler-ai-page .deploy-grid p{font-size:15.5px;font-weight:600;line-height:1.55;color:var(--muted)}
 .keppler-ai-page .deploy-grid small{margin-top:auto;color:var(--charcoal);font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.keppler-ai-page .deploy-grid .featured{background:var(--ink);color:var(--ivory);border-color:rgba(255,255,255,.16)}
-.keppler-ai-page .deploy-grid .featured>span{color:var(--ivory)}
-.keppler-ai-page .deploy-grid .featured p,.keppler-ai-page .deploy-grid .featured small{color:#a7a9a4}
+.keppler-ai-page .deploy-grid .featured{background:#fff;color:var(--ink);border-color:var(--line-strong)}
+.keppler-ai-page .deploy-grid .featured>span{color:var(--blue)}
+.keppler-ai-page .deploy-grid .featured p,.keppler-ai-page .deploy-grid .featured small{color:var(--muted)}
 
 /* real document examples */
 .keppler-ai-page .sample-intro{margin-bottom:38px}
@@ -204,12 +205,12 @@
 .keppler-ai-page .sample-dialog>header h2{margin:0;font-size:clamp(21px,2vw,30px)}
 .keppler-ai-page .sample-close{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;padding:0;border:1px solid var(--line-strong);border-radius:50%;background:transparent;color:var(--ink);font-size:30px;font-weight:300;line-height:1;cursor:pointer}
 .keppler-ai-page .sample-close:hover{background:var(--ink);color:var(--paper)}
-.keppler-ai-page .sample-compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;min-height:0;flex:1;padding:18px 24px;background:#f0f0ed}
+.keppler-ai-page .sample-compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;min-height:0;flex:1;padding:18px 24px;background:#fff}
 .keppler-ai-page .sample-compare>section{display:flex;min-height:0;flex-direction:column}
 .keppler-ai-page .viewer-heading{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:10px}
 .keppler-ai-page .viewer-heading b{font-size:15px}
 .keppler-ai-page .viewer-heading span{color:var(--muted);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.keppler-ai-page .document-viewer{flex:1;min-height:0;overflow:auto;padding:22px;background:#282a2d;border-radius:var(--radius-sm);scrollbar-color:#787b80 #282a2d;scrollbar-width:thin}
+.keppler-ai-page .document-viewer{flex:1;min-height:0;overflow:auto;padding:22px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);scrollbar-color:#787b80 #fff;scrollbar-width:thin}
 .keppler-ai-page .document-viewer img{display:block;width:auto;max-width:100%;height:auto;margin:0 auto 18px;background:white;box-shadow:0 2px 12px rgba(0,0,0,.28)}
 .keppler-ai-page .document-viewer img:last-child{margin-bottom:0}
 .keppler-ai-page .document-viewer.original img{max-height:none}
