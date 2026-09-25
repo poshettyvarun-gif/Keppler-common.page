@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 import KepplerPage from './keppler-ai/page.tsx';
+import AstryxPage from './astryx/AsTryxPage.jsx';
 import './keppler-ai/styles.css';
 
 const products = {
   ai: { name: 'KEPPLER AI', url: '/keppler-ai' },
-  astryx: { name: 'KEPPLER ASTRYX', url: 'https://location-tracker-flame-alpha.vercel.app/' },
+  astryx: { name: 'KEPPLER ASTRYX', url: '/keppler-astryx' },
 };
 function Arrow({ diagonal = false }) {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? 'M5 19 19 5M6 5h13v13' : 'M4 12h15m-6-6 6 6-6 6'} /></svg>;
@@ -53,7 +54,7 @@ function ProjectsDropdown({ onNavigate }) {
       <div className="projects-menu-heading"><span>THE KEPPLER PORTFOLIO</span><span>03</span></div>
       <a href="/keppler-ai" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-documents.png" alt="" /></span><span className="project-menu-copy">Document OCR<small>Multilingual AI OCR Platform</small></span><Arrow diagonal /></a>
       <button type="button" disabled><span className="project-menu-visual audio-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span><span className="project-menu-copy">Audio &amp; Video to Text<small>Turn audio and video into text</small></span></button>
-      <a href="#astryx" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-attendance.png" alt="" /></span><span className="project-menu-copy">Employee Attendance<small>KEPPLER ASTRYX</small></span><Arrow diagonal /></a>
+      <a href="/keppler-astryx" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-attendance.png" alt="" /></span><span className="project-menu-copy">Employee Attendance<small>KEPPLER ASTRYX</small></span><Arrow diagonal /></a>
     </div>}
   </div>;
 }
@@ -69,7 +70,7 @@ const productData = [
   { id: 'astryx', number: '02', name: 'KEPPLER ASTRYX', label: 'EMPLOYEE ATTENDANCE', title: <>Every check-in.<br /><em>A clearer picture.</em></>, description: 'Attendance grounded in the workplace. Employees capture a selfie and share their location to help verify attendance at their assigned workplace.', image: '/habitat-attendance.png', alt: 'Employee selfie check-in on a phone in a bright contemporary workplace', href: products.astryx.url, link: 'Request a demo', steps: ['Capture a selfie', 'Share location', 'Record attendance'], features: [['A selfie at the moment.', 'Camera-based check-in adds visual context to attendance.'], ['The workplace matters.', 'Shared location connects a check-in to the assigned workplace.'], ['Clarity for enterprise teams.', 'Bring selfie and location context together for attendance review.']], useCases: ['Distributed offices', 'Retail teams', 'Project sites', 'Service operations'], benefit: 'More context for managers. A consistent check-in for employees.', icon: 'location' },
 ];
 function ProductSection({ product: p }) {
-  return <section className={`product-section ${p.id}`} id={p.id} aria-labelledby={`${p.id}-title`}><div className="product-scene reveal">{p.id === "keppler-ai" ? <video className="product-scene-video" src="/paper.mp4" poster={p.image} autoPlay muted loop playsInline preload="metadata" aria-label="Animated document intelligence visual" /> : <img src={p.image} alt={p.alt} loading="lazy" />}<div className="product-wash" /><div className="product-copy"><p className="eyebrow"><span className="product-number">{p.number}</span>{p.label}</p><p className="product-name">{p.name}</p><h2 id={`${p.id}-title`}>{p.title}</h2><p className="product-description">{p.description}</p><a className="button primary" href={p.id === "astryx" ? "#contact" : p.href}>{p.link}<Arrow diagonal={p.id !== "astryx"} /></a></div><div className="workflow" aria-label={`${p.name} workflow`}>{p.steps.map((step, i) => <React.Fragment key={step}><span><b>0{i + 1}</b>{step}</span>{i < 2 && <Arrow />}</React.Fragment>)}</div><span className="visual-note">CONCEPT VISUAL</span></div><div className="product-details"><div className="feature-grid">{p.features.map(([title, text], i) => <article className="feature reveal" key={title}><span className="feature-index">{p.number}.{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div><div className="use-cases reveal"><span className="eyebrow">MADE FOR REAL WORK</span><div>{p.useCases.map(x => <span key={x}>{x}</span>)}</div></div><div className="benefit reveal"><Icon type={p.icon} /><p>{p.benefit}</p><a href={p.href} target={p.id === "keppler-ai" ? undefined : "_blank"} rel={p.id === "keppler-ai" ? undefined : "noreferrer"} aria-label={`Visit ${p.name}`}><Arrow diagonal /></a></div></div></section>;
+  return <section className={`product-section ${p.id}`} id={p.id} aria-labelledby={`${p.id}-title`}><div className="product-scene reveal">{p.id === "keppler-ai" ? <video className="product-scene-video" src="/paper.mp4" poster={p.image} autoPlay muted loop playsInline preload="metadata" aria-label="Animated document intelligence visual" /> : <img src={p.image} alt={p.alt} loading="lazy" />}<div className="product-wash" /><div className="product-copy"><p className="eyebrow"><span className="product-number">{p.number}</span>{p.label}</p><p className="product-name">{p.name}</p><h2 id={`${p.id}-title`}>{p.title}</h2><p className="product-description">{p.description}</p><a className="button primary" href={p.id === "astryx" ? "#contact" : p.href}>{p.link}<Arrow diagonal={p.id !== "astryx"} /></a></div><div className="workflow" aria-label={`${p.name} workflow`}>{p.steps.map((step, i) => <React.Fragment key={step}><span><b>0{i + 1}</b>{step}</span>{i < 2 && <Arrow />}</React.Fragment>)}</div><span className="visual-note">CONCEPT VISUAL</span></div><div className="product-details"><div className="feature-grid">{p.features.map(([title, text], i) => <article className="feature reveal" key={title}><span className="feature-index">{p.number}.{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div><div className="use-cases reveal"><span className="eyebrow">MADE FOR REAL WORK</span><div>{p.useCases.map(x => <span key={x}>{x}</span>)}</div></div><div className="benefit reveal"><Icon type={p.icon} /><p>{p.benefit}</p><a href={p.href} aria-label={`Visit ${p.name}`}><Arrow diagonal /></a></div></div></section>;
 }
 function ContextSection({ productId }) {
   return productId === 'keppler-ai' ? (
@@ -105,12 +106,18 @@ function App() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-  return <div id="top"><a className="skip-link" href="#products">Skip to products</a><Header /><main><Hero /><div className="section-bridge"><span>DOCUMENTS TO DATA. PEOPLE TO PLACE.</span><span>EXPLORE THE TWO SIDES OF CLARITY <Arrow /></span></div>{productData.map(p => <React.Fragment key={p.id}><ProductSection product={p} /><ContextSection productId={p.id} /></React.Fragment>)}<ContactSection /><section className="closing"><p className="eyebrow">YOUR WORK. IN A CLEARER LIGHT.</p><h2>Make your next<br />move <em>intelligent.</em></h2><div><a className="button primary" href={products.ai.url}>KEPPLER AI <Arrow diagonal /></a><a className="button secondary" href={products.astryx.url} target="_blank" rel="noreferrer">KEPPLER ASTRYX <Arrow diagonal /></a></div></section></main><footer><Logo /><p>Document intelligence. Workplace clarity.</p><span>© {new Date().getFullYear()} KEPPLER AI</span></footer></div>;
+  return <div id="top"><a className="skip-link" href="#products">Skip to products</a><Header /><main><Hero /><div className="section-bridge"><span>DOCUMENTS TO DATA. PEOPLE TO PLACE.</span><span>EXPLORE THE TWO SIDES OF CLARITY <Arrow /></span></div>{productData.map(p => <React.Fragment key={p.id}><ProductSection product={p} /><ContextSection productId={p.id} /></React.Fragment>)}<ContactSection /><section className="closing"><p className="eyebrow">YOUR WORK. IN A CLEARER LIGHT.</p><h2>Make your next<br />move <em>intelligent.</em></h2><div><a className="button primary" href={products.ai.url}>KEPPLER AI <Arrow diagonal /></a><a className="button secondary" href={products.astryx.url}>KEPPLER ASTRYX <Arrow diagonal /></a></div></section></main><footer><Logo /><p>Document intelligence. Workplace clarity.</p><span>© {new Date().getFullYear()} KEPPLER AI</span></footer></div>;
 }
-const isKepplerAiRoute = window.location.pathname.replace(/\/$/, '') === '/keppler-ai';
+const route = window.location.pathname.replace(/\/$/, '');
+const isKepplerAiRoute = route === '/keppler-ai';
+const isAstryxRoute = route === '/keppler-astryx';
+if (isAstryxRoute) {
+  document.title = 'KEPPLER ASTRYX — Employee Attendance';
+  document.querySelector('meta[name="description"]')?.setAttribute('content', 'Employee attendance with selfie and location context at the assigned workplace. Explore KEPPLER ASTRYX.');
+}
 if (isKepplerAiRoute) {
   document.title = 'Keppler OCR — Multilingual AI OCR Platform';
   document.querySelector('meta[name="description"]')?.setAttribute('content', 'AI-powered OCR that reads, understands, and structures complex documents in any language at enterprise scale.');
   document.querySelector('link[rel="icon"]')?.setAttribute('href', '/keppler-ai/favicon.svg');
 }
-createRoot(document.getElementById('root')).render(isKepplerAiRoute ? <div className="keppler-ai-page"><KepplerPage /></div> : <App />);
+createRoot(document.getElementById('root')).render(isKepplerAiRoute ? <div className="keppler-ai-page"><KepplerPage /></div> : isAstryxRoute ? <AstryxPage /> : <App />);
