@@ -52,7 +52,7 @@ function ProjectsDropdown({ onNavigate }) {
     {expanded && <div className="projects-list" id="projects-list">
       <div className="projects-menu-heading"><span>THE KEPPLER PORTFOLIO</span><span>03</span></div>
       <a href="/keppler-ai" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-documents.png" alt="" /></span><span className="project-menu-copy">Document OCR<small>Multilingual AI OCR Platform</small></span><Arrow diagonal /></a>
-      <button type="button" disabled><span className="project-menu-visual audio-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span><span className="project-menu-copy">Audio &amp; Video to Text</span></button>
+      <button type="button" disabled><span className="project-menu-visual audio-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span><span className="project-menu-copy">Audio &amp; Video to Text<small>Turn audio and video into text</small></span></button>
       <a href="#astryx" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-attendance.png" alt="" /></span><span className="project-menu-copy">Employee Attendance<small>KEPPLER ASTRYX</small></span><Arrow diagonal /></a>
     </div>}
   </div>;
