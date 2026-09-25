@@ -47,12 +47,13 @@ function ProjectsDropdown({ onNavigate }) {
 
   return <div className="projects-dropdown" ref={dropdownRef}>
     <button className="projects-trigger" type="button" aria-expanded={expanded} aria-controls="projects-list" onClick={() => setExpanded(value => !value)}>
-      Projects <span className="projects-chevron" aria-hidden="true" />
+      <span className="nav-grid-icon" aria-hidden="true"><i /><i /><i /><i /></span> Projects <span className="projects-chevron" aria-hidden="true" />
     </button>
     {expanded && <div className="projects-list" id="projects-list">
-      <a href="/keppler-ai" onClick={closeMenu}><span>Document OCR</span><small>Keppler — Multilingual AI OCR Platform</small></a>
-      <button type="button" disabled>Audio &amp; Video to Text</button>
-      <a href="#astryx" onClick={closeMenu}>Employee Attendance</a>
+      <div className="projects-menu-heading"><span>THE KEPPLER PORTFOLIO</span><span>03</span></div>
+      <a href="/keppler-ai" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-documents.png" alt="" /></span><span className="project-menu-copy">Document OCR<small>Multilingual AI OCR Platform</small></span><Arrow diagonal /></a>
+      <button type="button" disabled><span className="project-menu-visual audio-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span><span className="project-menu-copy">Audio &amp; Video to Text</span></button>
+      <a href="#astryx" onClick={closeMenu}><span className="project-menu-visual"><img src="/habitat-attendance.png" alt="" /></span><span className="project-menu-copy">Employee Attendance<small>KEPPLER ASTRYX</small></span><Arrow diagonal /></a>
     </div>}
   </div>;
 }
