@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 import KepplerPage from './keppler-ai/page.tsx';
@@ -21,9 +21,44 @@ function Logo() {
 function ProductSelect() {
   return <label className="product-select"><span>YOUR NEXT MOVE</span><select defaultValue="" aria-label="Choose a product to visit" onChange={e => { if (products[e.target.value]) window.location.assign(products[e.target.value].url); }}><option value="" disabled>Select a product ↗</option><option value="ai">KEPPLER AI — Documents</option><option value="astryx">KEPPLER ASTRYX — Attendance</option></select></label>;
 }
+function ProjectsDropdown({ onNavigate }) {
+  const [expanded, setExpanded] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const closeOnOutsideClick = event => {
+      if (!dropdownRef.current?.contains(event.target)) setExpanded(false);
+    };
+    const closeOnEscape = event => {
+      if (event.key === 'Escape') setExpanded(false);
+    };
+    document.addEventListener('pointerdown', closeOnOutsideClick);
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutsideClick);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, []);
+
+  const closeMenu = () => {
+    setExpanded(false);
+    onNavigate();
+  };
+
+  return <div className="projects-dropdown" ref={dropdownRef}>
+    <button className="projects-trigger" type="button" aria-expanded={expanded} aria-controls="projects-list" onClick={() => setExpanded(value => !value)}>
+      Projects <span className="projects-chevron" aria-hidden="true" />
+    </button>
+    {expanded && <div className="projects-list" id="projects-list">
+      <a href="/keppler-ai" onClick={closeMenu}><span>Document OCR</span><small>Keppler — Multilingual AI OCR Platform</small></a>
+      <button type="button" disabled>Audio &amp; Video to Text</button>
+      <a href="#astryx" onClick={closeMenu}>Employee Attendance</a>
+    </div>}
+  </div>;
+}
 function Header() {
   const [open, setOpen] = useState(false);
-  return <header className="header"><Logo /><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span>{open ? '−' : '+'}</span></button><nav className={open ? 'open' : ''} aria-label="Main navigation"><a href="#keppler-ai" onClick={() => setOpen(false)}>Document intelligence</a><a href="#astryx" onClick={() => setOpen(false)}>Employee attendance</a><a className="nav-cta" href="#products" onClick={() => setOpen(false)}>Explore products <Arrow diagonal /></a></nav></header>;
+  return <header className="header"><Logo /><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span>{open ? '−' : '+'}</span></button><nav className={open ? 'open' : ''} aria-label="Main navigation"><ProjectsDropdown onNavigate={() => setOpen(false)} /><a className="nav-cta" href="#products" onClick={() => setOpen(false)}>Explore products <Arrow diagonal /></a></nav></header>;
 }
 function Hero() {
   return <section className="hero" aria-labelledby="hero-title"><div className="habitat-scene"><div className="hero-video-layer"><img className="hero-image" src="/habitat-hero.png" alt="" aria-hidden="true" fetchPriority="high" /><video className="hero-video" src="/AI-moving.mp4" autoPlay poster="/habitat-hero.png" muted loop playsInline aria-label="Animated workplace scene with people moving" /></div><div className="hero-wash" /><div className="hero-copy"><p className="eyebrow"><span className="brand-strokes">///</span> INTELLIGENCE, IN MOTION</p><h1 id="hero-title">Clarity moves<br />work <em>forward.</em></h1><p className="hero-description">From the information in your documents to the people at your workplace. Two focused products. A clearer way to work.</p><a className="button primary" href="#products">Discover the possibilities <Arrow /></a><div className="hero-signature"><span /> BUILT AROUND YOUR ENTERPRISE</div></div><a className="scene-label scene-doc" href="#keppler-ai"><span className="scene-icon"><Icon type="document" /></span><span><small>01 / DOCUMENT INTELLIGENCE</small><strong>Information. Unlocked.</strong></span><Arrow diagonal /></a><a className="scene-label scene-people" href="#astryx"><span className="scene-icon"><Icon type="location" /></span><span><small>02 / EMPLOYEE ATTENDANCE</small><strong>People. In context.</strong></span><Arrow diagonal /></a><span className="scene-caption">A connected workplace, imagined.</span></div><div className="product-dock" id="products"><div className="dock-intro"><span className="eyebrow">THE KEPPLER PORTFOLIO</span><h2>One vision.<br />Two possibilities.</h2></div><a className="dock-product" href="#keppler-ai"><Icon type="document" /><span><strong>KEPPLER AI</strong><small>Intelligence for every document</small></span><Arrow diagonal /></a><a className="dock-product" href="#astryx"><Icon type="location" /><span><strong>KEPPLER ASTRYX</strong><small>Attendance with workplace context</small></span><Arrow diagonal /></a><ProductSelect /></div></section>;

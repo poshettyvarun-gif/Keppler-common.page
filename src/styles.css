@@ -20,3 +20,16 @@
 .product-scene-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
 @media(max-width:760px){.product-scene-video{top:auto;bottom:0;height:470px;object-position:67% center}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal:not(.visible){opacity:1;transform:none}.hero-light-trails,.hero-video,.product-scene-video{display:none}.hero-motion-layer{transform:none;will-change:auto}}
+
+.projects-dropdown{position:relative}
+.projects-trigger{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:45px;padding:11px 15px;border:1px solid #cbdbe9;border-radius:6px;background:#f6faff;color:var(--navy);font-size:14px;font-weight:650;cursor:pointer}
+.projects-trigger:hover,.projects-trigger[aria-expanded="true"]{border-color:var(--blue);background:#ecf6ff}
+.projects-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s ease}
+.projects-trigger[aria-expanded="true"] .projects-chevron{transform:translateY(2px) rotate(225deg)}
+.projects-list{position:absolute;top:calc(100% + 12px);left:0;z-index:30;width:min(350px,calc(100vw - 32px));padding:8px;border:1px solid #dbe6f0;border-radius:10px;background:#fff;box-shadow:0 20px 50px #0b214628}
+.projects-list a,.projects-list button{display:block;width:100%;padding:14px 15px;border:0;border-radius:7px;background:transparent;color:var(--navy);text-align:left;font-size:14px;font-weight:650;line-height:1.4}
+.projects-list a:hover,.projects-list a:focus-visible{background:#edf6ff;color:#005fc5}
+.projects-list small{display:block;margin-top:4px;color:#58708a;font-size:11px;font-weight:500;line-height:1.45}
+.projects-list button:disabled{color:#728197;cursor:not-allowed}
+@media(max-width:1100px){.projects-trigger{font-size:12px}}
+@media(max-width:760px){.projects-dropdown{width:100%}.projects-trigger{width:100%;min-height:49px;font-size:15px}.projects-list{position:static;width:100%;margin-top:10px;box-shadow:none}.projects-list a,.projects-list button{font-size:15px}}
