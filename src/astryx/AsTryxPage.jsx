@@ -13,7 +13,6 @@ function SectionTitle({ label, title, children }) {
 
 export default function AstryxPage() {
   return <div className="astryx-page" id="top">
-    <header className="astryx-header"><a href="/" aria-label="KEPPLER AI home"><img src="/keppler-logo.png" alt="KEPPLER AI" /></a><span>KEPPLER ASTRYX</span></header>
     <main>
       <section className="astryx-hero">
         <img className="astryx-hero-image" src="/habitat-attendance.png" alt="Concept illustration of an employee selfie and location check-in on a phone" fetchPriority="high" />

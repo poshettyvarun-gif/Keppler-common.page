@@ -7,9 +7,6 @@ const Logo = () => (
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Keppler AI home"><Logo /></a>
-      </header>
 
       <section className="hero" id="top">
         <div className="hero-copy reveal">
