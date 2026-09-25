@@ -38,3 +38,19 @@
 .header nav .nav-register{padding:12px 17px;border-radius:6px;background:var(--navy);color:#fff}
 @media(max-width:1100px){.header nav .nav-account{font-size:12px}.header nav .nav-register{padding:12px}}
 @media(max-width:760px){.header nav .nav-account{text-align:left;font-size:15px}.header nav .nav-register{text-align:center;padding:14px 17px}}
+.header nav{gap:clamp(18px,2.6vw,42px)}
+.nav-primary,.nav-actions,.nav-account-group{display:flex;align-items:center}
+.nav-primary{gap:clamp(18px,2vw,32px)}
+.nav-actions{gap:clamp(16px,1.8vw,28px)}
+.nav-account-group{gap:18px;padding-left:clamp(16px,1.8vw,28px);border-left:1px solid var(--line)}
+.projects-trigger{border:0;background:transparent;padding:11px 0;gap:12px;font-size:14px}
+.projects-trigger:hover,.projects-trigger[aria-expanded="true"]{border-color:transparent;background:transparent;color:var(--blue)}
+.nav-contact{padding:11px 0;color:var(--navy);font-size:14px;font-weight:650}
+.nav-contact:hover{color:var(--blue)}
+.header nav .nav-account{font-size:14px}
+.header nav .nav-account:disabled{opacity:.58}
+.header nav .nav-register{padding:10px 15px;border:1px solid #cad9e9;background:#f5f9fd;color:var(--navy)}
+.header .nav-cta{background:var(--blue);font-size:14px;font-weight:650;white-space:nowrap;transition:background .2s ease,transform .2s ease}
+.header .nav-cta:hover{background:#005fc5;transform:translateY(-1px)}
+@media(max-width:1100px){.nav-primary{gap:18px}.nav-actions{gap:14px}.nav-account-group{gap:12px;padding-left:14px}.projects-trigger,.nav-contact,.header nav .nav-account,.header .nav-cta{font-size:12px}}
+@media(max-width:760px){.header nav.open{gap:0;padding-top:13px;padding-bottom:22px}.nav-primary,.nav-actions{width:100%;flex-direction:column;align-items:stretch;gap:0}.nav-primary{border-bottom:1px solid var(--line);padding-bottom:9px}.projects-trigger{width:100%;min-height:49px;padding:12px 0;font-size:15px}.nav-contact{padding:15px 0;font-size:15px}.nav-actions{padding-top:15px;gap:16px}.nav-account-group{width:100%;justify-content:space-between;gap:12px;padding:0;border:0}.header nav .nav-account{min-height:44px;font-size:15px}.header nav .nav-register{min-width:110px;padding:10px 16px}.header .nav-cta{min-height:49px;font-size:15px}}
