@@ -25,7 +25,7 @@ function Logo() {
 function ProductSelect() {
   return <label className="product-select"><span>YOUR NEXT MOVE</span><select defaultValue="" aria-label="Choose a product to visit" onChange={e => { if (products[e.target.value]) window.location.assign(products[e.target.value].url); }}><option value="" disabled>Select a product ↗</option><option value="ai">KEPPLER AI — Documents</option><option value="transcription">Audio &amp; Video to Text</option><option value="astryx">KEPPLER ASTRYX — Attendance</option></select></label>;
 }
-function ProjectsDropdown({ onNavigate }) {
+function ProjectsDropdown({ onNavigate, active }) {
   const [expanded, setExpanded] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -50,8 +50,8 @@ function ProjectsDropdown({ onNavigate }) {
   };
 
   return <div className="projects-dropdown" ref={dropdownRef}>
-    <button className="projects-trigger" type="button" aria-expanded={expanded} aria-controls="projects-list" onClick={() => setExpanded(value => !value)}>
-      <span className="nav-grid-icon" aria-hidden="true"><i /><i /><i /><i /></span> Features <span className="projects-chevron" aria-hidden="true" />
+    <button className={`projects-trigger${active ? ' is-current' : ''}`} type="button" aria-expanded={expanded} aria-controls="projects-list" onClick={() => setExpanded(value => !value)}>
+      Features <span className="projects-chevron" aria-hidden="true" />
     </button>
     {expanded && <div className="projects-list" id="projects-list">
       <div className="projects-menu-heading"><span>THE KEPPLER PORTFOLIO</span><span>03</span></div>
@@ -61,9 +61,26 @@ function ProjectsDropdown({ onNavigate }) {
     </div>}
   </div>;
 }
+function getActiveNav() {
+  if (['/keppler-ai', '/keppler-astryx', '/audio-video-to-text'].includes(window.location.pathname)) return 'features';
+  if (window.location.hash === '#about') return 'about';
+  if (window.location.hash === '#contact') return 'contact';
+  if (['#products', '#keppler-ai', '#astryx', '#audio-video'].includes(window.location.hash)) return 'features';
+  return 'home';
+}
 function Header() {
   const [open, setOpen] = useState(false);
-  return <header className="header"><Logo /><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span>{open ? '−' : '+'}</span></button><nav className={open ? 'open' : ''} aria-label="Main navigation"><div className="nav-primary"><ProjectsDropdown onNavigate={() => setOpen(false)} /><a className="nav-contact" href="/#about" onClick={() => setOpen(false)}>About us</a><a className="nav-contact" href="/#contact" onClick={() => setOpen(false)}>Contact</a></div><div className="nav-actions"><div className="nav-account-group" aria-label="Account"><button className="nav-account" type="button" disabled>Sign in</button></div><a className="nav-cta" href="/#products" onClick={() => setOpen(false)}>Explore products <Arrow diagonal /></a></div></nav></header>;
+  const [active, setActive] = useState(getActiveNav);
+  useEffect(() => {
+    const updateActive = () => setActive(getActiveNav());
+    window.addEventListener('hashchange', updateActive);
+    window.addEventListener('popstate', updateActive);
+    return () => {
+      window.removeEventListener('hashchange', updateActive);
+      window.removeEventListener('popstate', updateActive);
+    };
+  }, []);
+  return <header className="header"><Logo /><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span>{open ? '−' : '+'}</span></button><nav className={open ? 'open' : ''} aria-label="Main navigation"><div className="nav-primary"><a className={`nav-contact nav-home${active === "home" ? " is-current" : ""}`} href="/#top" aria-current={active === "home" ? "page" : undefined} onClick={() => { setActive("home"); setOpen(false); }}>Home</a><a className={`nav-contact${active === "about" ? " is-current" : ""}`} href="/#about" aria-current={active === "about" ? "location" : undefined} onClick={() => { setActive("about"); setOpen(false); }}>About Us</a><ProjectsDropdown active={active === "features"} onNavigate={() => setOpen(false)} /><a className={`nav-contact${active === "contact" ? " is-current" : ""}`} href="/#contact" aria-current={active === "contact" ? "location" : undefined} onClick={() => { setActive("contact"); setOpen(false); }}>Contact</a></div><div className="nav-actions"><div className="nav-account-group" aria-label="Account"><button className="nav-account" type="button" disabled>Sign in</button></div><a className="nav-cta" href="/#products" onClick={() => setOpen(false)}>Explore products <Arrow diagonal /></a></div></nav></header>;
 }
 function Hero() {
   return <section className="hero" aria-labelledby="hero-title"><div className="habitat-scene"><img className="hero-image" src="/habitat-hero.png" alt="Concept illustration of documents and employee check-ins in a connected workplace" fetchPriority="high" /><div className="hero-wash" /><div className="hero-copy"><p className="eyebrow"><span className="brand-strokes">///</span> THREE PRODUCTS. ONE WORKPLACE.</p><h1 id="hero-title">Documents. Recordings.<br /><em>People at work.</em></h1><p className="hero-description">Extract information from documents, turn recordings into text, and verify employee attendance with selfie and location context.</p><a className="button primary" href="#products">Explore the products <Arrow /></a><div className="hero-signature"><span /> BUILT AROUND YOUR ENTERPRISE</div></div><a className="scene-label scene-doc" href="#keppler-ai"><span className="scene-icon"><Icon type="document" /></span><span><small>01 / DOCUMENT INTELLIGENCE</small><strong>Documents to data</strong></span><Arrow diagonal /></a><a className="scene-label scene-people" href="#astryx"><span className="scene-icon"><Icon type="location" /></span><span><small>02 / EMPLOYEE ATTENDANCE</small><strong>Selfie + location check-in</strong></span><Arrow diagonal /></a><span className="scene-caption">A connected workplace, imagined.</span></div><div className="product-dock" id="products"><div className="dock-intro"><span className="eyebrow">THE KEPPLER PORTFOLIO</span><h2>Three products.<br />Different tasks.</h2></div><a className="dock-product" href="#keppler-ai"><Icon type="document" /><span><strong>KEPPLER AI</strong><small>Extract data from documents</small></span><Arrow diagonal /></a><a className="dock-product" href="#astryx"><Icon type="location" /><span><strong>KEPPLER ASTRYX</strong><small>Attendance with workplace context</small></span><Arrow diagonal /></a><a className="dock-product" href="#audio-video"><Icon type="audio" /><span><strong>AUDIO &amp; VIDEO TO TEXT</strong><small>Turn recorded speech into text</small></span><Arrow diagonal /></a><ProductSelect /></div></section>;
