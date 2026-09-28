@@ -122,11 +122,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section choose-cta">
-        <div className="section-heading"><p className="kicker">Why Enterprises Choose Keppler</p><h2>Superior multilingual accuracy with an <em>API-first design</em> and enterprise security.</h2><p>Strong Indian language OCR, scalable processing, and flexible deployments give teams the control they need.</p></div>
-        <div className="pill-row"><span>Multilingual accuracy</span><span>API-first architecture</span><span>Indian language strength</span><span>Enterprise security</span><span>Batch & real-time</span></div>
-      </section>
-
       <section className="section contact" id="contact">
         <div className="contact-info"><p className="kicker">Get in Touch</p><h2>Let’s make your documents <em>useful.</em></h2><p>Tell us what you’re processing and where the complexity lies. Our OCR experts will help you find the right path.</p><a href="mailto:info@thekeppler.com" className="email-link">info@thekeppler.com <span>↗</span></a>
           <div className="address-grid">

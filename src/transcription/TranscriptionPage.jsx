@@ -27,7 +27,7 @@ export function TranscriptPreview() {
 export default function TranscriptionPage() {
   return <div className="astryx-page transcription-page" id="top"><main>
     <section className="transcription-hero">
-      <div className="transcription-hero-copy"><p className="eyebrow">KEPPLER / AUDIO &amp; VIDEO TO TEXT</p><h1>Spoken words.<br /><em>Written clarity.</em></h1><p>Turn speech from audio and video recordings into text. Bring the words in your recordings into a format you can read, review, and refer back to.</p><div className="astryx-actions"><a className="button primary" href="#contact">Request a demo <span aria-hidden="true">↗</span></a><a className="astryx-text-link" href="#workflow">How it works <span aria-hidden="true">↓</span></a></div></div>
+      <div className="transcription-hero-copy"><p className="eyebrow">KEPPLER / AUDIO &amp; VIDEO TO TEXT</p><h1>Your recordings,<br /><em>in words.</em></h1><p>Turn speech from audio and video recordings into text. Bring the words in your recordings into a format you can read, review, and refer back to.</p><div className="astryx-actions"><a className="button primary" href="#contact">Request a demo <span aria-hidden="true">↗</span></a><a className="astryx-text-link" href="#workflow">How it works <span aria-hidden="true">↓</span></a></div></div>
       <TranscriptPreview />
     </section>
 

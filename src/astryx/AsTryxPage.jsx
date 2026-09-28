@@ -16,7 +16,7 @@ export default function AstryxPage() {
     <main>
       <section className="astryx-hero">
         <img className="astryx-hero-image" src="/habitat-attendance.png" alt="Concept illustration of an employee selfie and location check-in on a phone" fetchPriority="high" />
-        <div className="astryx-hero-copy"><p className="eyebrow">KEPPLER ASTRYX / EMPLOYEE ATTENDANCE</p><h1>Every check-in.<br /><em>A clearer picture.</em></h1><p>Attendance grounded in the workplace. Employees capture a selfie and share their location to help verify attendance at their assigned workplace.</p><div className="astryx-actions"><a className="button primary" href="#contact">Request a demo <span aria-hidden="true">↗</span></a><a className="astryx-text-link" href="#workflow">How it works <span aria-hidden="true">↓</span></a></div></div>
+        <div className="astryx-hero-copy"><p className="eyebrow">KEPPLER ASTRYX / EMPLOYEE ATTENDANCE</p><h1>A check-in with<br /><em>selfie and location.</em></h1><p>Attendance grounded in the workplace. Employees capture a selfie and share their location to help verify attendance at their assigned workplace.</p><div className="astryx-actions"><a className="button primary" href="#contact">Request a demo <span aria-hidden="true">↗</span></a><a className="astryx-text-link" href="#workflow">How it works <span aria-hidden="true">↓</span></a></div></div>
         <span className="astryx-concept">CONCEPT VISUAL</span>
       </section>
 
@@ -27,7 +27,7 @@ export default function AstryxPage() {
 
       <section className="astryx-section astryx-context">
         <div className="astryx-context-image"><img src="/habitat-workplace-checkin.png" alt="Concept illustration of an employee taking a selfie at the workplace" loading="lazy" /><span className="astryx-concept">CONCEPT VISUAL</span></div>
-        <div><SectionTitle label="ATTENDANCE, IN CONTEXT" title={<>People and place.<br /><em>A shared context.</em></>}>Bring selfie and location context together for attendance review.</SectionTitle><div className="astryx-context-points"><article><span>01</span><div><h3>A selfie at the moment.</h3><p>Camera-based check-in adds visual context to attendance.</p></div></article><article><span>02</span><div><h3>The workplace matters.</h3><p>Shared location connects a check-in to the assigned workplace.</p></div></article></div></div>
+        <div><SectionTitle label="ATTENDANCE, IN CONTEXT" title={<>A face at check-in.<br /><em>A workplace on record.</em></>}>Bring selfie and location context together for attendance review.</SectionTitle><div className="astryx-context-points"><article><span>01</span><div><h3>Selfie captured at check-in.</h3><p>Camera-based check-in adds visual context to attendance.</p></div></article><article><span>02</span><div><h3>Location shared at check-in.</h3><p>Shared location connects a check-in to the assigned workplace.</p></div></article></div></div>
       </section>
 
       <section className="astryx-section astryx-workplaces">
